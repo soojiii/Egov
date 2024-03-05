@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import kr.or.ddit.exception.FileCopyFailureException;
+
 /**
  *	스트림(stream)
  *		: 연속성을 지닌 순차적인 일련의 데이터 집합이면서, 데이터 집합이 이동하는 단방향 통로.
@@ -52,7 +54,7 @@ public class StreamDesc {
 		readAndWriteKorString_copy();
 	}
 
-	private static void readAndWriteKorString_copy() throws IOException {
+	private static void readAndWriteKorString_copy() {
 		File readFile = new File("F:/00.medias/ETA_ANSI.txt");
 		File writeFile = new File("F:/ETA_ANSI.txt");
 		
@@ -68,6 +70,8 @@ public class StreamDesc {
 			while((readByte=bis.read())!=-1) { //EOF 문자 : -1, null
 				bos.write(readByte);
 			}
+		}catch (IOException e) {
+			throw new FileCopyFailureException(e);
 		}
 		
 	}
