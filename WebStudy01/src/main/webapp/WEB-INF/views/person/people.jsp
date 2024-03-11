@@ -8,28 +8,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#mdiv{
+  display : flex;
+  flex-direction : row;
+}
+#dleft,#dright{
+  flex : 50%;
+}
+</style>
 </head>
 <body>
-<table>
-	<thead>
-		<tr>
-			<th>아이디</th>
-			<th>이름</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%
-			List<PersonVO> people = (List<PersonVO>) request.getAttribute("people");
-			for(PersonVO once : people){
-				%>
+<div id="mdiv">
+	<div id="dleft">
+		<table>
+			<thead>
 				<tr>
-					<td><%=once.getId() %></td>
-					<td><%=once.getName() %></td>
+					<th>아이디</th>
+					<th>이름</th>
 				</tr>
+			</thead>
+			<tbody>
 				<%
-			}
-		%>
-	</tbody>
-</table>
+					List<PersonVO> people = (List) request.getAttribute("people");
+					for(PersonVO once : people){
+						%>
+						<tr>
+							<td><%=once.getId() %></td>
+							<td><a href="javascript:;" onclick="clickHandler(event);" data-member-id="<%=once.getId()%>"><%=once.getName() %></a></td>
+						</tr>
+						<%
+					}
+				%>
+			</tbody>
+		</table>
+	</div>
+	<div id="dright">
+	오른쪽
+	</div>
+</div>
+
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/app/person.js"></script>
+
 </body>
 </html>
+
+
