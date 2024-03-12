@@ -50,3 +50,22 @@ aTag.addEventListener("click", e=>{
 			}).then(obj=>console.log(obj))
 			.catch(err=>console.log(err));
 });*/
+
+btn.addEventListener("click", (e)=>{
+	let agent = window.navigator.userAgent.toUpperCase();
+	let browserName = "";
+		if(agent.includes("EDG")) {
+			browserName ="엣지";
+		}else if(agent.includes("WHALE")) {
+			browserName ="웨일";
+		}else if(agent.includes("CHROME")) {
+			browserName ="크롬";
+		}else if(agent.includes("SAFARI")) {
+			browserName ="사파리";
+		}else {
+			browserName ="기타";
+		}		
+		msgArea.innerHTML = `당신의 브라우저는 ${browserName}입니다.`
+})
+
+
