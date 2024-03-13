@@ -65,7 +65,6 @@ public class userAgentServlet extends HttpServlet{
 //------------------------------------------------------------------------		
 		
 		browserName = BrowserInfo.findBrowserName(agent);
-//------------------------------------------------------------------------		
 		
 		String message = String.format("당신의 브라우저는 %s입니다.", browserName);
 		try(

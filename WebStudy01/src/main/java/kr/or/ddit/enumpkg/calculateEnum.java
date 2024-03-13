@@ -23,7 +23,7 @@ public enum calculateEnum {
 		return finded;
 	}
 	
-	public static String findoperatorName(String oa) {
-		return findoperator(oa).getoperatorName();
+	public static String findoperatorName(String op) {
+		return findoperator(op).getoperatorName();
 	}
 }

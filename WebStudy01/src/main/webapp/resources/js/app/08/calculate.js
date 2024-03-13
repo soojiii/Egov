@@ -4,8 +4,9 @@
 let forms = document.forms;
 forms[0].addEventListener("submit", e=>{
 	e.preventDefault();
-	setTimeout(function(){
-		let opl = window.navigator.op.toUpperCase();
+	
+/*	setTimeout(function(){*/
+		let opl = paramoperator();
 		let calculateEnum = "";
 		if(opl.includes("PLUS")) {
 			calculateEnum = "+";
@@ -16,21 +17,18 @@ forms[0].addEventListener("submit", e=>{
 		}else if(opl.includes("DIVIDE")) {
 			calculateEnum ="/";
 		}
-				
+		
 		resultArea.innerHTML = calculateEnum;
 		
-	},2000);
+/*	},2000);*/
 	
 	
-	let form = e.target;
-	
+/*	let form = e.target;
 	let url = form.action;
 	let method = aTag.dataset.method ?? "get";
-	
 	let headers = {
 		"addept" : "text/html"
 	};
-	
 	let options = {
 		method : method,
 		headers : headers
@@ -45,7 +43,7 @@ forms[0].addEventListener("submit", e=>{
 		}).then(html=>{
 			resultArea.innerHTML = html; 
 		})
-		.catch();
+		.catch();*/
 });
 	
 	
