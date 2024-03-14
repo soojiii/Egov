@@ -1,6 +1,32 @@
 /**
  * 
  */
+window['ua-btn'].addEventListener("click", (e)=>{
+	let agent = window.navigator.userAgent;
+	const BrowserInfo = {
+		EDG:"엣지",
+   		CHROME:"크롬",
+    	WHALE:"웨일",
+    	OTHERS:"기타",
+		findBrowserName:function(agent){
+			agent = agent.toUpperCase();
+			let browserName = this.OTHERS;
+			for(let prop in this){
+				if(agent.indexOf(prop)>=0){
+					browserName = this[prop];
+					break;
+				}
+			}
+			return browserName;
+		}
+	}
+	BrowserInfo['SAFARI'] = "사파리";
+	
+	let brName = BrowserInfo.findBrowserName(agent);
+	msgArea.innerHTML = brName;
+});
+
+
 /*document.querySelectorAll("a.asyncA");*/
 document.addEventListener("click", (e)=>{
 	if(!e.target.classList.contains("asyncA")) return false;
@@ -51,7 +77,7 @@ aTag.addEventListener("click", e=>{
 			.catch(err=>console.log(err));
 });*/
 
-btn.addEventListener("click", (e)=>{
+/*btn.addEventListener("click", (e)=>{
 	let agent = window.navigator.userAgent.toUpperCase();
 	let browserName = "";
 		if(agent.includes("EDG")) {
@@ -66,6 +92,6 @@ btn.addEventListener("click", (e)=>{
 			browserName ="기타";
 		}		
 		msgArea.innerHTML = `당신의 브라우저는 ${browserName}입니다.`
-})
+})*/
 
 

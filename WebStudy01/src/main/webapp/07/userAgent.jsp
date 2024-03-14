@@ -10,7 +10,7 @@
 <a class="asyncA other"  data-method="post" href="<%=request.getContextPath()%>/07/userAgent.do">
 사용자 브라우저식별(서버사이드)
 </a>
-<button id="btn">
+<button id="ua-btn">
 사용자 브라우저식별(클라이언트사이드)
 </button>
 <!-- a태그를 클릭하면, 비동기 요청을 발생시키고,

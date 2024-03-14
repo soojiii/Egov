@@ -47,8 +47,8 @@ public class userAgentServlet extends HttpServlet{
 //				break;
 //			}
 //		}
-//		BrowserInfo finded = BrowserInfo.findBrowser(agent);
-//		browserName = finded.getBrowserName();
+		BrowserInfo finded = BrowserInfo.findBrowser(agent);
+		browserName = finded.getBrowserName();
 //------------------------------------------------------------------------		
 		
 //		if(agent.contains("EDG")) {

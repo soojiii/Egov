@@ -25,10 +25,10 @@ public class LoginProcessControllerServlet extends HttpServlet {
 //		3. 파라미터 검증
 //			- 검증 통과
 		String memId = Optional.of(req.getParameter("memId"))
-						.filter(id->id.isEmpty())
+						.filter(id->!id.isEmpty())
 						.orElseThrow(()->new IllegalArgumentException("아이디 누락"));
 		String memPass = Optional.of(req.getParameter("memPass"))
-						.filter(id->id.isEmpty())
+						.filter(id->!id.isEmpty())
 						.orElseThrow(()->new IllegalArgumentException("비밀번호 누락"));
 //			4. 인증 여부 판단
 			if(authenticate(memId, memPass)) {
@@ -36,7 +36,9 @@ public class LoginProcessControllerServlet extends HttpServlet {
 				resp.sendRedirect(req.getContextPath()+"/");
 			}else {
 //				- 실패 : 로그인 페이지로 이동 - forward
-				req.getRequestDispatcher("/login/loginForm.jsp").forward(req, resp);
+				req.setAttribute("message", "로그인 실패");
+//				req.getRequestDispatcher("/login/loginForm.jsp").forward(req, resp);
+				resp.sendRedirect(req.getContextPath()+"/login/loginForm.jsp");
 			}
 		}catch(RuntimeException e) {
 //			- 불통과 : 상태코드 400 전송
