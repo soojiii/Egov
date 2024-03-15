@@ -45,6 +45,12 @@ public class MbtiControllerServlet extends HttpServlet{
 	}
 	
 	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.service(req, resp);
+	}
+	
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String path = "/WEB-INF/views/mbti/mbtiForm.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
