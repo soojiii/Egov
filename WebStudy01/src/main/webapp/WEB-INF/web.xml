@@ -31,4 +31,23 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   	<session-timeout>2</session-timeout>
   	<tracking-mode>COOKIE</tracking-mode>
   </session-config>
+  <login-config>
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>/login/loginForm.jsp</form-login-page>
+  		<form-error-page>/login/loginForm.jsp</form-error-page>
+  	</form-login-config>	
+  </login-config>
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>MBTI</web-resource-name>
+  		<url-pattern>/09/mbti</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>ROLE_ADMIN</role-name>
+  	</auth-constraint>
+<!--   	<user-data-constraint> -->
+<!--   		<transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!--   	</user-data-constraint> -->
+  </security-constraint>
 </web-app>
