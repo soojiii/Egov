@@ -9,7 +9,7 @@
 <title>BTS</title>
 </head>
 <body>
-	<form id="bts-form" method="post" enctype="application/x-www-form-urlencoded">
+	<form id="bts-form" method="get" enctype="application/x-www-form-urlencoded">
 		<select name="name" onchange="this.form.requestSubmit()">
 			<%
 				Map<String, String> btsMap = (Map) application.getAttribute("btsMap");
