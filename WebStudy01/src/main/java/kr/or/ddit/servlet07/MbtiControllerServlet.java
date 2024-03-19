@@ -1,6 +1,8 @@
 package kr.or.ddit.servlet07;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -9,11 +11,13 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.exception.ResponseStatusException;
+import kr.or.ddit.utils.CookieMapRequestWrapper;
 
 @WebServlet(loadOnStartup = 1, value ="/09/mbti")
 public class MbtiControllerServlet extends HttpServlet{
@@ -52,6 +56,8 @@ public class MbtiControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String findName = new CookieMapRequestWrapper(req).getCookieValue("mbtiCookie");
+		req.setAttribute("mbtiCookieValue", findName);
 		String path = "/WEB-INF/views/mbti/mbtiForm.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 		
@@ -70,10 +76,19 @@ public class MbtiControllerServlet extends HttpServlet{
 			if(!mbtiMap.containsKey(mbtiType)) {
 				throw new ResponseStatusException(400, String.format("%s mbti 유형은 없음.", mbtiType));
 			}
+			
+			Cookie mbtiCookie = new Cookie("mbtiCookie", URLEncoder.encode(mbtiType, "UTF-8"));
+			mbtiCookie.setPath(req.getContextPath());
+			mbtiCookie.setMaxAge(60*60*24*3);
+			resp.addCookie(mbtiCookie);
+			
 			String content = String.format("/WEB-INF/views/mbti/%s.html", mbtiType);
 			req.setAttribute("content", content);
 			String path = "/WEB-INF/views/mbti/base.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
+			
+			
+			
 		}catch(ResponseStatusException e) {
 			resp.sendError(e.getStatus(), e.getMessage());
 		}

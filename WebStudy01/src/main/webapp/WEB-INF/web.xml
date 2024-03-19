@@ -5,6 +5,14 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<param-name>param1</param-name>
+  	<param-value>value1</param-value>
+  </context-param>
+  <context-param>
+  <param-name>imageFolder</param-name>
+  <param-value>F:/00.medias/images</param-value>
+  </context-param>
   <!-- <servlet>
   	<servlet-name>DescriptionServlet</servlet-name>
   	<servlet-class>kr.or.ddit.servlet01.DescriptionServlet</servlet-class>
@@ -38,16 +46,13 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   		<form-error-page>/login/loginForm.jsp</form-error-page>
   	</form-login-config>	
   </login-config>
-  <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>MBTI</web-resource-name>
-  		<url-pattern>/09/mbti</url-pattern>
-  	</web-resource-collection>
-  	<auth-constraint>
-  		<role-name>ROLE_ADMIN</role-name>
-  	</auth-constraint>
-<!--   	<user-data-constraint> -->
-<!--   		<transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
-<!--   	</user-data-constraint> -->
-  </security-constraint>
+<!--   <security-constraint> -->
+<!--   	<web-resource-collection> -->
+<!--   		<web-resource-name>MBTI</web-resource-name> -->
+<!--   		<url-pattern>/09/mbti</url-pattern> -->
+<!--   	</web-resource-collection> -->
+<!--   	<auth-constraint> -->
+<!--   		<role-name>ROLE_ADMIN</role-name> -->
+<!--   	</auth-constraint> -->
+<!--   </security-constraint> -->
 </web-app>
