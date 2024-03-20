@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/perScript.jsp" />
+<jsp:include page="/WEB-INF/includee/preScript.jsp" />
 </head>
 <body>
 <div class="container">

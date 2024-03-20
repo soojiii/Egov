@@ -44,6 +44,7 @@
 			File srcFolder = new File(application.getRealPath(srcFURL));
 			String srcName = "cat5.png";
 			File srcFile = new File(srcFolder, srcName);
+			
 			String desFURL = "/12";
 			File destFolder = new File(application.getRealPath(desFURL));
 			
@@ -52,6 +53,7 @@
 			try(
 				InputStream is = new FileInputStream(srcFile);
 				BufferedInputStream bis = new BufferedInputStream(is);
+				
 				OutputStream os = new FileOutputStream(destFile);
 				BufferedOutputStream bos = new BufferedOutputStream(os);
 			){
