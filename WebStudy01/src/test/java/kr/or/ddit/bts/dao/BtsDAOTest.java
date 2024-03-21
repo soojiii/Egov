@@ -21,4 +21,10 @@ class BtsDAOTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	void testIncrementHit() {
+		BtsVO tmp = dao.selectBts("B001");
+		dao.incrementHit("B001");
+		tmp = dao.selectBts("B001");
+	}
 }

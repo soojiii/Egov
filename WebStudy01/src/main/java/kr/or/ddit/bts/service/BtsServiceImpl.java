@@ -16,6 +16,7 @@ public class BtsServiceImpl implements BtsService {
 		if(bts==null) {
 			throw new PkNotFoundException(404);
 		}
+		dao.incrementHit(code);
 		return bts;
 	}
 

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * 5. 상태 확인 방법 제공.
  * 6. 직렬화 가능.
  */
-public class BtsVO implements Serializable{
+public class BtsVO implements Serializable, Comparable<BtsVO>{
 	
 	public BtsVO() {
 		super();
@@ -89,6 +89,11 @@ public class BtsVO implements Serializable{
 	@Override
 	public String toString() {
 		return "BtsVO [code=" + code + ", name=" + name + "]";
+	}
+
+	@Override
+	public int compareTo(BtsVO o) {
+		return -(this.count - o.getCount());
 	}
 
 	
