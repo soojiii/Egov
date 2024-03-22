@@ -20,9 +20,11 @@
 		<li id="${singleMap.path }" class="${single.file ? 'file' : 'folder' }">${single.name }</li>
 	</c:forEach>
 </ul>
+<ul>
 	<c:forEach items="${fileMap }" var="entry">
 		<c:set value="${entry.value }" var="single"/>
-		<li id="${entry.key }">"${single.name }"</li>
+		<li id="${entry.key }" class="${single.file ? 'file' : 'folder' }">${single.name }</li>
 	</c:forEach>
+</ul>
 </body>
 </html>

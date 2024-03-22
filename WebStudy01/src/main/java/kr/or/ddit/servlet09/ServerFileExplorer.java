@@ -41,7 +41,7 @@ public class ServerFileExplorer extends HttpServlet{
 			fileMap.put(path, tmp);
 			singleMap.put("path", path);
 			singleMap.put("file", tmp);
-//			fileList.add(tmp);
+			fileList.add(singleMap);
 		}
 		req.setAttribute("fileList", fileList);
 		req.setAttribute("fileMap", fileMap);
@@ -49,3 +49,7 @@ public class ServerFileExplorer extends HttpServlet{
 		req.getRequestDispatcher(viewName).forward(req, resp);
 	}
 }
+
+
+
+

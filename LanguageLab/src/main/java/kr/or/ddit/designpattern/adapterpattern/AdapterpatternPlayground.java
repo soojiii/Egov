@@ -3,6 +3,7 @@ package kr.or.ddit.designpattern.adapterpattern;
 import kr.or.ddit.designpattern.adapterpattern.obj.Adaptee;
 import kr.or.ddit.designpattern.adapterpattern.obj.Adapter;
 import kr.or.ddit.designpattern.adapterpattern.obj.Client;
+import kr.or.ddit.designpattern.adapterpattern.obj.OtherConcrete;
 
 public class AdapterpatternPlayground {
 	public static void main(String[] args) {
