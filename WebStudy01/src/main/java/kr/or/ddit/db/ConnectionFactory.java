@@ -33,9 +33,6 @@ public class ConnectionFactory {
 	}
 	
 	public static Connection getConnection() throws SQLException {
-		url = "jdbc:oracle:thin:@localhost:1521/xe";
-		user = "HSJ91";
-		password = "java";
 		Connection conn = DriverManager.getConnection(url, user, password);
 		return conn;
 	}

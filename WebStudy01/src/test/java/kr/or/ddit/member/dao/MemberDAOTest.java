@@ -47,6 +47,44 @@ class MemberDAOTest {
 		assertNull(dao.selectMember(memId));
 	}
 
+	@Test
+	void testUpdateMember() {
+		MemberVO member = new MemberVO();
+		member.setMemPass("c");
+		member.setMemName("c");
+		member.setMemRegno1("c");
+		member.setMemRegno2("c");
+		member.setMemBir(null);
+		member.setMemZip("c");
+		member.setMemAdd1("c");
+		member.setMemAdd2("c");
+		member.setMemHometel("c");
+		member.setMemComtel("c");
+		member.setMemHp("c");
+		member.setMemMail("c");
+		member.setMemJob("c");
+		member.setMemLike("c");
+		member.setMemMemorial("c");
+		member.setMemMemorialday(null);
+		member.setMemMileage(null);
+		member.setMemDelete("c");
+		member.setMemId("a002");
+		int rowcnt = dao.updateMember(member);
+		assertEquals(1, rowcnt);
+		
+	}
+	
+	@Test
+	void testDeleteMember() {
+		MemberVO member = new MemberVO();
+		String memId = "a002";
+		int rowcnt = dao.deleteMember(memId);
+		assertEquals(1, rowcnt);
+	}
+	
+	
+	
+	
 }
 
 

@@ -30,6 +30,20 @@ public interface MemberDAO {
 	 */
 	public MemberVO selectMember(String memId);
 	
+	
+	/**
+	 * 회원 정보 수정
+	 * @param member
+	 * @return 수정된 레코드 수
+	 */
+	public int updateMember(MemberVO member);
+	
+	/**
+	 * 회원 정보 삭제(???)
+	 * @param memId
+	 * @return 삭제(???)된 레코드 수
+	 */
+	public int deleteMember(String memId);
 
 
 }
