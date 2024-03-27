@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.db.ConnectionFactory"%>
+<%@page import="kr.or.ddit.db.ConnectionFactory_JDBC_Ver1"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.utils.NamingUtils"%>

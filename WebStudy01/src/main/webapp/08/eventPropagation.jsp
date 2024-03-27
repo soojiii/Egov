@@ -34,26 +34,29 @@
 		<button id="bubbleBottom" class="bubbling" tabindex="-3">최하위 자식버튼- Event Bubbling</button>
 	</div>
 </div>
+
 <div id="captureTop" class="top capturing" tabindex="">
 	<div id="captureMiddle" class="middle capturing" tabindex="">
 		<button id="captureBottom" class="capturing" tabindex="">최하위 자식버튼- Event Capturing</button>
 	</div>
 </div>
+
 <script type="text/javascript">
 	document.querySelectorAll(".bubbling").forEach((be)=>{
 		be.addEventListener("click", (e)=>{
 			console.log("click bubbling to", be.id, "target : ", e.target.id);
-// 			e.stopPropagation();  
+			e.stopPropagation();  
 		});
 		be.addEventListener("focus", (e)=>{
 			console.log("focus bubbling to", be.id, "target : ", e.target.id);
 // 			e.stopPropagation();  
 		});
 	});
+	
 	document.querySelectorAll(".capturing").forEach((ce)=>{
 		ce.addEventListener("click", (e)=>{
 			console.log("click capturing from", ce.id, "target : ", e.target.id);
-// 			e.stopPropagation();
+			e.stopPropagation();
 		}, true);
 		ce.addEventListener("focus", (e)=>{
 			console.log("focus capturing from", ce.id, "target : ", e.target.id);

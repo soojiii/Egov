@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.ddit.db.ConnectionFactory;
+import kr.or.ddit.db.ConnectionFactory_JDBC_Ver1;
 import kr.or.ddit.exception.PersistenceException;
 import kr.or.ddit.utils.NamingUtils;
 
@@ -19,7 +19,7 @@ public class PropertyDAOImpl implements PropertyDAO {
 	@Override
 	public List<Map<String, Object>> selectProperties(Map<String, Object> paramMap) {
 		try(
-				Connection conn = ConnectionFactory.getConnection();
+				Connection conn = ConnectionFactory_JDBC_Ver1.getConnection();
 				Statement stmt = conn.createStatement();
 				){
 					StringBuffer sql = new StringBuffer();

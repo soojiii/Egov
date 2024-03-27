@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.db.ConnectionFactory;
+import kr.or.ddit.db.ConnectionFactory_JDBC_Ver1;
 import kr.or.ddit.exception.PersistenceException;
 import kr.or.ddit.servlet10.service.PropertyService;
 import kr.or.ddit.servlet10.service.PropertyServiceImpl;

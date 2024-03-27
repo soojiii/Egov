@@ -36,6 +36,9 @@ $(function(){
 		});
 	}).on("hidden.bs.modal", function(){
 		$modal.find("td[id]").html("");
-	})
+	});
+	
+	$("tr[data-mem-id].active").trigger("click");
+	
 	
 });

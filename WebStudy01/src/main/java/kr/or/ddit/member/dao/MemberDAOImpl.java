@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.or.ddit.db.ConnectionFactory;
+import kr.or.ddit.db.ConnectionFactory_HikariCP;
+import kr.or.ddit.db.ConnectionFactory_JDBC_Ver2;
+import kr.or.ddit.db.ConnectionFactory_JDBC_Ver3;
 import kr.or.ddit.exception.PersistenceException;
 import kr.or.ddit.vo.MemberVO;
 
@@ -62,7 +64,7 @@ public class MemberDAOImpl implements MemberDAO {
 			sql.append(")                    ");
 		
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionFactory_HikariCP.getConnection();
 //			Statement stmt = conn.createStatement();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
@@ -110,7 +112,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.append(" MEM_MILEAGE 											  ");
 		sql.append(" FROM MEMBER 											  ");
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionFactory_HikariCP.getConnection();
 //			Statement stmt = conn.createStatement();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
@@ -147,7 +149,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.append(" FROM MEMBER  											  ");
 		sql.append(" WHERE MEM_ID = ? 								  		  ");
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionFactory_JDBC_Ver3.getConnection();
 //			Statement stmt = conn.createStatement();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
@@ -210,7 +212,7 @@ public class MemberDAOImpl implements MemberDAO {
 			  sql.append(" WHERE MEM_ID = ?                ");
 		
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionFactory_HikariCP.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
 			int idx = 1;
@@ -250,7 +252,7 @@ public class MemberDAOImpl implements MemberDAO {
 		StringBuffer sql = new StringBuffer();
 		sql.append(" DELETE FROM MEMBER WHERE MEM_ID=?  ");
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionFactory_HikariCP.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		){
 			pstmt.setString(1, memId);

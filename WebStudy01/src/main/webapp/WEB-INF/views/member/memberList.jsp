@@ -33,7 +33,8 @@
 	<tbody>
 		<c:if test="${not empty memberList }">
 			<c:forEach items="${memberList }" var="member">
-				<tr data-mem-id="${member.memId }" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<c:set value="${member.memId eq lastCreated.memId ? 'active' : ''}" var="clzValue"/>
+				<tr class="${clzValue }" data-mem-id="${member.memId }" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					<td>${member.memName }</td>
 					<td>${member.memAdd1 }</td>
 					<td>${member.memAdd2 }</td>
@@ -48,6 +49,7 @@
 				<td colspan="6">회원 정보 없음.</td>
 			</tr>
 		</c:if>
+		<c:remove var="lastCreated" scope="session"/>
 	</tbody>
 </table>
 <!-- Modal -->
