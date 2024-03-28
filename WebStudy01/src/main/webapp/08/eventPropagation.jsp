@@ -45,11 +45,11 @@
 	document.querySelectorAll(".bubbling").forEach((be)=>{
 		be.addEventListener("click", (e)=>{
 			console.log("click bubbling to", be.id, "target : ", e.target.id);
-			e.stopPropagation();  
+// 			e.stopPropagation();  
 		});
 		be.addEventListener("focus", (e)=>{
 			console.log("focus bubbling to", be.id, "target : ", e.target.id);
-// 			e.stopPropagation();  
+			e.stopPropagation();  
 		});
 	});
 	
@@ -60,9 +60,10 @@
 		}, true);
 		ce.addEventListener("focus", (e)=>{
 			console.log("focus capturing from", ce.id, "target : ", e.target.id);
-// 			e.stopPropagation();
+			e.stopPropagation();
 		}, true);
 	});
+
 </script>
 </body>
 </html>
