@@ -1,12 +1,16 @@
 package kr.or.ddit.member.dao;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.junit.jupiter.api.Test;
 
-import kr.or.ddit.exception.PersistenceException;
 import kr.or.ddit.vo.MemberVO;
 
 class MemberDAOTest {
@@ -16,17 +20,15 @@ class MemberDAOTest {
 	void testInsertMember() {
 		MemberVO member = new MemberVO();
 		assertThrows(PersistenceException.class, ()->dao.insertMember(member));
-		member.setMemId("a002");
+		member.setMemId("a003");
 		member.setMemPass("java");
 		member.setMemName("테스터");
 		member.setMemZip("00000");
 		member.setMemAdd1("대전 오류");
 		member.setMemAdd2("대덕인재개발원");
 		member.setMemMail("aa@naver.com");
-		member.setMemBir("2024-01-01");
 		int rowcnt = dao.insertMember(member);
 		assertEquals(1, rowcnt);
-		
 	}
 
 	@Test
@@ -68,22 +70,18 @@ class MemberDAOTest {
 		member.setMemMemorialday(null);
 		member.setMemMileage(null);
 		member.setMemDelete("c");
-		member.setMemId("a002");
+		member.setMemId("a004");
 		int rowcnt = dao.updateMember(member);
 		assertEquals(1, rowcnt);
-		
 	}
 	
 	@Test
 	void testDeleteMember() {
 		MemberVO member = new MemberVO();
-		String memId = "a002";
+		String memId = "a1234";
 		int rowcnt = dao.deleteMember(memId);
 		assertEquals(1, rowcnt);
 	}
-	
-	
-	
 	
 }
 

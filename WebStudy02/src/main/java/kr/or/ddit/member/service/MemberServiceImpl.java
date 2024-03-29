@@ -38,14 +38,27 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ServiceResult modifyMember(MemberVO member) throws PkNotFoundException {
-		
-		return null;
+		String mem = member.getMemId();
+		ServiceResult result = null;
+		if(dao.selectMember(mem)==null) {
+			result = ServiceResult.PKDUPLICATED;
+		}else {
+			int rowcnt = dao.updateMember(member);
+			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}
+		return result;
 	}
 
 	@Override
-	public ServiceResult removeMember(MemberVO inputData) throws PkNotFoundException {
-		
-		return null;
+	public ServiceResult removeMember(String inputData) throws PkNotFoundException {
+		ServiceResult result = null;
+		if(dao.selectMember(inputData)==null) {
+			int rowcnt = dao.deleteMember(inputData);
+			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}else {
+			result = ServiceResult.PKDUPLICATED;
+		}
+		return result;
 	}
 
 }
