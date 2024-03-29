@@ -19,7 +19,7 @@
 <table class="table table-bordered">
 			<tr>
 				<th>회원번호</th>
-				<td><input type="text" name="memId" 
+				<td><input type="text" name="memId" readonly="readonly"
 					value="${member.memId}" class="form-control"/><span
 					class="text-danger">${errors.memId}</span></td>
 			</tr>
