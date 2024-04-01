@@ -82,8 +82,7 @@ public class MemberInsertControllerServlet extends HttpServlet{
 				break;
 
 			default:
-				req.getSession().setAttribute("lastCreated", member);
-				viewName = "redirect:/member/memberList.do";
+				viewName = "redirect:/";
 				break;
 			}
 //		 * 4. scope 를 이용해 model 공유

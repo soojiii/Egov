@@ -1,12 +1,20 @@
 <%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%
+
+<script>
+	<c:if test="${not empty message }">
+		alert("${message}");
+		<c:remove var="message" scope="session"/>
+	</c:if> 
+</script>
+<%-- <%
 String message = (String)session.getAttribute("message");
 if(message!=null && !message.isEmpty()){
 	session.removeAttribute("message"); //flash attribute
@@ -16,16 +24,16 @@ if(message!=null && !message.isEmpty()){
 </script>
 <%
 }
-%>
+%> --%>
 </head>
 <body>
-<form action="j_security_check" method="post" enctype="application/x-www-form-urlencoded">
+<form action="<c:url value='/login/loginProcess.do' />" method="post" enctype="application/x-www-form-urlencoded">
 	<%
 		String paramId = Optional.ofNullable(request.getParameter("memId"))
 								.orElse("");
 	%>
-	<input type="text" name="j_username" placeholder="아이디" value="<%=paramId%>"/>
-	<input type="password" name="j_password" placeholder="비밀번호"/>
+	<input type="text" name="memId" placeholder="아이디" />
+	<input type="password" name="memPass" placeholder="비밀번호"/>
 	<button type="submit">로그인</button>
 </form>
 </body>

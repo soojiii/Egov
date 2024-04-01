@@ -12,7 +12,9 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.vo.MemberVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 class MemberDAOTest {
 	MemberDAO dao = new MemberDAOImpl();
 	
@@ -36,7 +38,7 @@ class MemberDAOTest {
 		List<MemberVO> memberList = dao.selectMemberList();
 		assertNotNull(memberList);
 		assertNotEquals(0, memberList.size());
-		System.out.println(memberList);
+		log.info("list : {}"+ memberList);
 	}
 
 	@Test
@@ -54,9 +56,6 @@ class MemberDAOTest {
 		MemberVO member = new MemberVO();
 		member.setMemPass("c");
 		member.setMemName("c");
-		member.setMemRegno1("c");
-		member.setMemRegno2("c");
-		member.setMemBir(null);
 		member.setMemZip("c");
 		member.setMemAdd1("c");
 		member.setMemAdd2("c");
@@ -68,8 +67,6 @@ class MemberDAOTest {
 		member.setMemLike("c");
 		member.setMemMemorial("c");
 		member.setMemMemorialday(null);
-		member.setMemMileage(null);
-		member.setMemDelete("c");
 		member.setMemId("a004");
 		int rowcnt = dao.updateMember(member);
 		assertEquals(1, rowcnt);

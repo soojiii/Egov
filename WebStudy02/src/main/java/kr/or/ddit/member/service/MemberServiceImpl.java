@@ -4,12 +4,17 @@ import java.util.List;
 
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.exception.PkNotFoundException;
+import kr.or.ddit.login.AuthenticateException;
+import kr.or.ddit.login.BadCredentialException;
+import kr.or.ddit.login.service.AuthenticateService;
+import kr.or.ddit.login.service.AuthenticateServiceImpl;
 import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.member.dao.MemberDAOImpl;
 import kr.or.ddit.vo.MemberVO;
 
 public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao = new MemberDAOImpl();
+	private AuthenticateService authService = new AuthenticateServiceImpl();
 		
 	@Override
 	public ServiceResult createMember(MemberVO member) {
@@ -38,27 +43,41 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ServiceResult modifyMember(MemberVO member) throws PkNotFoundException {
-		String mem = member.getMemId();
-		ServiceResult result = null;
-		if(dao.selectMember(mem)==null) {
-			result = ServiceResult.PKDUPLICATED;
-		}else {
-			int rowcnt = dao.updateMember(member);
-			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		try {
+			authService.authenticate(member);
+			return dao.updateMember(member) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}catch(BadCredentialException e) {
+			return ServiceResult.INVALIDPASSWORD;
 		}
-		return result;
+		
+//		MemberVO saved = retrieveMember(member.getMemId());
+//		ServiceResult result = null;
+//		if(saved.getMemPass().equals(member.getMemPass())){
+//			return dao.updateMember(member) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+//		}else {
+//			result = ServiceResult.INVALIDPASSWORD;
+//		}
+//		return result;
 	}
 
 	@Override
-	public ServiceResult removeMember(String inputData) throws PkNotFoundException {
-		ServiceResult result = null;
-		if(dao.selectMember(inputData)==null) {
-			int rowcnt = dao.deleteMember(inputData);
-			result = rowcnt > 0 ? ServiceResult.OK : ServiceResult.FAIL;
-		}else {
-			result = ServiceResult.PKDUPLICATED;
+	public ServiceResult removeMember(MemberVO inputData) throws PkNotFoundException {
+		try {
+			authService.authenticate(inputData);
+			return dao.deleteMember(inputData.getMemId()) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+		}catch(BadCredentialException e) {
+			return ServiceResult.INVALIDPASSWORD;
 		}
-		return result;
+		
+		
+//		MemberVO saved = retrieveMember(inputData.getMemId());
+//		ServiceResult result = null;
+//		if(saved.getMemPass().equals(inputData.getMemPass())){
+//			return dao.deleteMember(inputData.getMemId()) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+//		}else {
+//			result = ServiceResult.INVALIDPASSWORD;
+//		}
+//		return result;
 	}
 
 }

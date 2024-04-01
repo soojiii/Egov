@@ -51,7 +51,7 @@ public interface MemberService {
 	 * @return INVALIDPASSWORD, OK, FAIL
 	 * @throws PkNotFoundException(500) 존재하지 않는 경우 예외 발생.
 	 */
-	public ServiceResult removeMember(String inputData) throws PkNotFoundException;
+	public ServiceResult removeMember(MemberVO inputData) throws PkNotFoundException;
 	
 	
 }

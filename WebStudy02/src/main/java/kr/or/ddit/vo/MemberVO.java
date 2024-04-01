@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -39,7 +37,7 @@ public class MemberVO implements Serializable{
 	private String memMemorial;
 	private String memMemorialday;
 	private Long memMileage;
-	private String memDelete;
+	private boolean memDelete;
 	
 	
 	
