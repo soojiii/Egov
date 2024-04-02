@@ -53,7 +53,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 				viewName = "redirect:/";
 			}catch(AuthenticateException e) {
 //				- 실패 : 로그인 페이지로 이동 - forward
-				session.setAttribute("message", e.getMessage());
+				session.setAttribute("message", e.getMessage());  //flash
 				viewName = "redirect:/login/loginForm.jsp";
 			}
 			

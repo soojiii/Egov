@@ -11,6 +11,8 @@
 <!-- 로그인 여부(authMember)를 판단하고, -->
 <!-- 로그인 된 경우, 해당 사용자의 이름을 출력. -->
 <!-- 로그인 전인 경우, 로그인 페이지로 이동할 수 있는 a 태그 출력. -->
+<%=request.getUserPrincipal() %>
+<h4>principal : ${pageContext.request.userPrincipal }</h4>
 <c:choose>
 	<c:when test="${not empty sessionScope.authMember }">
 		<a href="<c:url value='/mypage'/>">${authMember.memName }</a>
