@@ -16,7 +16,23 @@ class ProdDAOTest {
 	
 	@Test
 	void testInsertProd() {
-		fail("Not yet implemented");
+		ProdVO prod = dao.selectProd("P101000001");
+		prod.setProdId(null);
+		int rowcnt = dao.insertProd(prod);
+		assertEquals(1, rowcnt);
+		log.info("prodId : {}", prod.getProdId());
+		
+//		prod.setprodId("");
+//		prod.setprodName("");
+//		prod.setprodLgu("");
+//		prod.setprodBuyer("");
+//		prod.setprodCost("");
+//		prod.setprodPrice("");
+//		prod.setprodSale("");
+//		prod.setprodOutline("");
+//		prod.setprodImg("");
+//		prod.setprodTotalstock("");
+//		prod.setprodprodProperstock("");
 	}
 
 	@Test

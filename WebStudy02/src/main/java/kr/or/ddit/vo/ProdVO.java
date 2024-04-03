@@ -1,10 +1,11 @@
 package kr.or.ddit.vo;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.ToString.Exclude;
 
 @Data
@@ -35,5 +36,6 @@ public class ProdVO {
 	
 	private BuyerVO buyer; //Has a 관계 (1:1), PROD(1) : BUYER(1) --> ProdVO has a BuyerVO
 	private LprodVO lprod; //Has a 관계 (1:1), PROD(1) : LPROD(1) --> ProdVO has a LprodVO
+	private List<CartVO> cartList;  //Has Many
 	
 }

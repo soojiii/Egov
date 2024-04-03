@@ -95,6 +95,34 @@
 			<td>${member.memDelete}</td>
 		</tr>
 		<tr>
+			<th>구매기록</th>
+			<td>
+<!-- 				어떤 상품을 몇개를 구매했는지 (상품명, 구매량) -->
+				<table class="table">
+					<thead class="thead">
+						<tr>
+							<th>상품명</th>
+							<th>구매수량</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${member.cartList }" var="cart">
+							<tr>
+								<td>
+									<c:url value="/prod/prodDetail.do" var="detailUrl">
+										<c:param name="what" value="${cart.cartProd }"></c:param>
+									</c:url>
+									<a href="${detailUrl }">${cart.prod.prodName }</a>
+								</td>
+								<td>${cart.cartQty }</td>
+								<td>${cart.cartDate }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
 			<td colspan="2">
 				<button type="button" class="btn btn-primary" id="updateBtn" >수정</button>
 				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" >탈퇴</button>

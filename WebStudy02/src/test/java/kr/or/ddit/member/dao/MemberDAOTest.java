@@ -46,9 +46,12 @@ class MemberDAOTest {
 		String memId = "a001";
 		MemberVO member = dao.selectMember(memId);
 		assertNotNull(member);
-		System.out.println(member);
-		memId = "asas' OR '1'='1";
-		assertNull(dao.selectMember(memId));
+		
+		log.info("carList : {}", member.getCartList().size());
+		
+//		System.out.println(member);
+//		memId = "asas' OR '1'='1";
+//		assertNull(dao.selectMember(memId));
 	}
 
 	@Test

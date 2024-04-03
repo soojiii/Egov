@@ -9,7 +9,7 @@
 	</resultMap>
 	
 	<select id="selectBuyerList" resultMap="buyerMap">
-		WITH NAME AS (
+		WITH PROD_VIEW AS (
 		 SELECT PROD_BUYER
 		        , COUNT(PROD_ID) PROD_COUNT
 		        FROM PROD

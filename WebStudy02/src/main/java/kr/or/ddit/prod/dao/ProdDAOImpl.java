@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import kr.or.ddit.member.dao.MemberDAO;
 import kr.or.ddit.mybatis.CustomSqlSessionFactoryBuilder;
 import kr.or.ddit.vo.ProdVO;
 
@@ -14,8 +15,13 @@ public class ProdDAOImpl implements ProdDAO {
 
 	@Override
 	public int insertProd(ProdVO prod) {
-		// TODO Auto-generated method stub
-		return 0;
+		try(
+			SqlSession sqlSession = factory.openSession();
+		){
+			int rowcnt = sqlSession.getMapper(ProdDAO.class).insertProd(prod);
+			if(rowcnt>0) sqlSession.commit();
+			return rowcnt;
+		}
 	}
 
 	@Override
@@ -38,8 +44,13 @@ public class ProdDAOImpl implements ProdDAO {
 
 	@Override
 	public int updateProd(ProdVO prod) {
-		// TODO Auto-generated method stub
-		return 0;
+		try(
+				SqlSession sqlSession = factory.openSession();
+			){
+				int rowcnt = sqlSession.getMapper(ProdDAO.class).updateProd(prod);
+				if(rowcnt>0) sqlSession.commit();
+				return rowcnt;
+			}
 	}
 	
 }

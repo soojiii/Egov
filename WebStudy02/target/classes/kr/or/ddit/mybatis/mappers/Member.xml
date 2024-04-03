@@ -6,13 +6,34 @@
 		MEM_ID, MEM_NAME, MEM_ADD1, MEM_ADD2, MEM_HP, MEM_MAIL, MEM_MILEAGE
 		FROM MEMBER
 	</select>
-	<select id="selectMember" resultType="MemberVO" parameterType="string">
+	<resultMap type="MemberVO" id="memberMap" autoMapping="true">
+		<id property="memId" column="MEM_ID"/>
+		<collection property="cartList" ofType="CartVO" autoMapping="true">
+			<association property="prod" javaType="ProdVO" autoMapping="true" />
+		</collection>
+	</resultMap>
+	<select id="selectMember" resultMap="memberMap" parameterType="string">
+		WITH CARTPROD AS (
+		    SELECT 
+		    CART_NO
+		    , TO_DATE(SUBSTR(CART_NO, 1, 8), 'YYYYMMDD') CART_DATE
+		    , CART_PROD
+		    , CART_MEMBER
+		    , CART_QTY
+		    , PROD.*
+		    FROM CART INNER JOIN PROD ON (CART_PROD = PROD_ID)
+		)
 		SELECT	
-		MEM_ID MEMID, MEM_PASS, MEM_NAME, MEM_REGNO1, MEM_REGNO2,  
+		MEM_ID, MEM_PASS, MEM_NAME, MEM_REGNO1, MEM_REGNO2,  
 		TO_CHAR(MEM_BIR, 'YYYY-MM-DD') MEM_BIR, MEM_ZIP, MEM_ADD1, MEM_ADD2, MEM_HOMETEL, 
 		MEM_COMTEL, MEM_HP, MEM_MAIL, MEM_JOB, MEM_LIKE, 
 		MEM_MEMORIAL, TO_CHAR(MEM_MEMORIALDAY, 'YYYY-MM-DD') MEM_MEMORIALDAY, MEM_MILEAGE, MEM_DELETE
-		FROM MEMBER  
+		, PROD_NAME
+		, CART_QTY
+		, CART_NO
+		, CART_PROD
+		, CART_DATE
+		FROM MEMBER LEFT OUTER JOIN CARTPROD ON (MEM_ID = CART_MEMBER)
 		WHERE MEM_ID = #{memId}
 	</select>
 	<insert id="insertMember" parameterType="MemberVO">
@@ -88,4 +109,6 @@
 		FROM MEMBER
 		WHERE MEM_ID = #{memId} AND MEM_DELETE IS NULL
 	</select>
+	
+	
 </mapper>
