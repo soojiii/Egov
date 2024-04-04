@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.mvc.ViewResolverComposite;
+
 @WebServlet("/login/logout.do")
 public class LogoutControllerServlet extends HttpServlet {
 
@@ -29,11 +31,12 @@ public class LogoutControllerServlet extends HttpServlet {
 			String viewName = "redirect:/?message="+message;
 			
 //			 * 6. view 로 이동 (flow control)
-			if(viewName.startsWith("redirect:")) {
-				String location = viewName.replace("redirect:", req.getContextPath());
-				resp.sendRedirect(location);
-			}else {
-				req.getRequestDispatcher(viewName).forward(req, resp);			
-			}
+			new ViewResolverComposite().resolveView(viewName, req, resp);
+//			if(viewName.startsWith("redirect:")) {
+//				String location = viewName.replace("redirect:", req.getContextPath());
+//				resp.sendRedirect(location);
+//			}else {
+//				req.getRequestDispatcher(viewName).forward(req, resp);			
+//			}
 		}
 }

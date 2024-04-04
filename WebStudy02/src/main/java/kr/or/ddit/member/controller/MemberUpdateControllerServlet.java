@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.ValidateUtils;
 import kr.or.ddit.vo.MemberVO;
 
@@ -83,11 +84,11 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 			switch (result) {
 			case INVALIDPASSWORD:
 				req.setAttribute("message", "비밀번호 오류");
-				viewName = "/WEB-INF/views/member/memberForm.jsp";
+				viewName = "member/memberForm";
 				break;
 			case FAIL:
 				req.setAttribute("message", "서버 오류, 잠시 뒤 다시 가입하세요.");
-				viewName = "/WEB-INF/views/member/memberForm.jsp";
+				viewName = "member/memberForm";
 				break;
 
 			default:
@@ -96,14 +97,16 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 				break;
 			}
 		}else {
-			viewName = "/WEB-INF/views/member/memberForm.jsp";
+			viewName = "member/memberForm";
 		}
-		if(viewName.startsWith("redirect:")) {
-			String location = viewName.replace("redirect:", req.getContextPath());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(viewName).forward(req, resp);			
-		}
+		
+		new ViewResolverComposite().resolveView(viewName, req, resp);
+//		if(viewName.startsWith("redirect:")) {
+//			String location = viewName.replace("redirect:", req.getContextPath());
+//			resp.sendRedirect(location);
+//		}else {
+//			req.getRequestDispatcher(viewName).forward(req, resp);			
+//		}
 	}
 			
 }

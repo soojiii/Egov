@@ -23,6 +23,7 @@ import org.apache.commons.lang3.Validate;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.utils.PopulateUtils;
 import kr.or.ddit.utils.ValidateUtils;
 import kr.or.ddit.validate.groups.InsertGroup;
@@ -80,11 +81,11 @@ public class MemberInsertControllerServlet extends HttpServlet{
 			switch (result) {
 			case PKDUPLICATED:
 				req.setAttribute("message", "아이디 중복, 다른 아이디 사용해야 함");
-				viewName = "/WEB-INF/views/member/memberForm.jsp";
+				viewName = "member/memberForm";
 				break;
 			case FAIL:
 				req.setAttribute("message", "서버 오류, 잠시 뒤 다시 가입하세요.");
-				viewName = "/WEB-INF/views/member/memberForm.jsp";
+				viewName = "member/memberForm";
 				break;
 
 			default:
@@ -93,15 +94,16 @@ public class MemberInsertControllerServlet extends HttpServlet{
 			}
 //		 * 4. scope 를 이용해 model 공유
 		}else {
-			viewName = "/WEB-INF/views/member/memberForm.jsp";
+			viewName = "member/memberForm";
 		}
 //		 * 5. view 결정
 //		 * 6. view 로 이동 (flow control)
-		if(viewName.startsWith("redirect:")) {
-			String location = viewName.replace("redirect:", req.getContextPath());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(viewName).forward(req, resp);			
-		}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
+//		if(viewName.startsWith("redirect:")) {
+//			String location = viewName.replace("redirect:", req.getContextPath());
+//			resp.sendRedirect(location);
+//		}else {
+//			req.getRequestDispatcher(viewName).forward(req, resp);			
+//		}
 	}
 }

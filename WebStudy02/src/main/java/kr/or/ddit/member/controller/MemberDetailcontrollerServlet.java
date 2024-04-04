@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.vo.MemberVO;
 
 /**
@@ -38,6 +39,8 @@ public class MemberDetailcontrollerServlet extends HttpServlet{
 			MemberVO member = service.retrieveMember(memId);
 			req.setAttribute("member", member);
 			String viewName = "/jsonView.do";
-			req.getRequestDispatcher(viewName).forward(req, resp);
+//			req.getRequestDispatcher(viewName).forward(req, resp);
+			
+			new ViewResolverComposite().resolveView(viewName, req, resp);
 		}
 }
