@@ -65,9 +65,11 @@ public class MemberVO implements Serializable{
 	private Long memMileage;
 	private boolean memDelete;
 	
-	
+	@JsonIgnore
 	//구매기록
 	private Set<CartVO> cartList; //Has Many
 	
+	//사용자 역할 정보
+	private String memRole;
 	
 }

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/preScript.jsp" />
-</head>
-<body>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>Insert title here</title> -->
+<%-- <jsp:include page="/WEB-INF/includee/preScript.jsp" /> --%>
+<!-- </head> -->
+<!-- <body> -->
 	<table class="table table-bordered table-stripe">
 		<tr>
 			<th>상품명</th>
@@ -130,6 +130,14 @@
 			</td>
 		</tr>
 	</table>
-	<jsp:include page="/WEB-INF/includee/postScript.jsp" />
-</body>
-</html>
+			<td colspan="2">
+				<c:url value="/prod/prodUpdate.do" var="updateUrl" >
+					<c:param name="what" value="${prod.prodId}" /> 
+				</c:url>
+			<button onclick="location.href='${updateUrl}';" class="btn btn-primary">상품 정보 수정</button>
+			</td>
+	
+	
+<%-- 	<jsp:include page="/WEB-INF/includee/postScript.jsp" /> --%>
+<!-- </body> -->
+<!-- </html> -->

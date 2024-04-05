@@ -6,25 +6,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class InternalRecourceViewResolver implements ViewResolver {
+public class TilesViewResolver implements ViewResolver{
+	private String prefix = "/";
+	private String suffix = ".tiles";
 	
-	private String prefix = "";
-	private String suffix = "";
-	@Override
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
-	@Override
-	public void setSuffix(String suffix) {
-		this.suffix = suffix;
-	}
 	
 	@Override
 	public void resolveView(String viewName, HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		String path = prefix + viewName + suffix;
-		req.getRequestDispatcher(path).forward(req, resp);
-
+		try {
+			req.getRequestDispatcher(path).forward(req, resp);
+		}catch (Exception e) {
+			throw new CannotResolveViewNameException(e);
+		}
 	}
-
 }

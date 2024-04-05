@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/preScript.jsp" />
-</head>
-<body>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>Insert title here</title> -->
+<%-- <jsp:include page="/WEB-INF/includee/preScript.jsp" /> --%>
+<!-- </head> -->
+<!-- <body> -->
+
 <h4></h4>
 <table class="table table-bordered table-stripe">
 	<thead class="table-dark">
@@ -47,6 +48,7 @@
 		</c:if>
 	</tbody>
 </table>
-<jsp:include page="/WEB-INF/includee/postScript.jsp" />
-</body>
-</html>
+
+<%-- <jsp:include page="/WEB-INF/includee/postScript.jsp" /> --%>
+<!-- </body> -->
+<!-- </html> -->

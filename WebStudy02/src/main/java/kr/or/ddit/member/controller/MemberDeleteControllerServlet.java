@@ -23,18 +23,20 @@ public class MemberDeleteControllerServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		1. 요청 접수 및 분석
-		HttpSession session = req.getSession();
+//		HttpSession session = req.getSession();
 //		2. 검증
-		if(session.isNew()) {
-			resp.sendError(400);
-			return;
-		}
-		MemberVO authMember = (MemberVO) session.getAttribute("authMember");
+//		if(session.isNew()) {
+//			resp.sendError(400);
+//			return;
+//		}
+//		MemberVO authMember = (MemberVO) session.getAttribute("authMember");
+		String memId = req.getUserPrincipal().getName();
+		HttpSession session = req.getSession();
 		String viewName = null;
-		if(authMember==null) {
-			viewName = "redirect:/login/loginForm.jsp";
-		}else {
-			String memId = authMember.getMemId();
+//		if(authMember==null) {
+//			viewName = "redirect:/login/loginForm.jsp";
+//		}else {
+//			String memId = authMember.getMemId();
 			String password = req.getParameter("password");
 			if(StringUtils.isBlank(password)) {
 				resp.sendError(400);
@@ -60,7 +62,7 @@ public class MemberDeleteControllerServlet extends HttpServlet{
 				viewName = "forward:/login/logout.do";
 				break;
 			}
-		}
+//		}
 //		5. 뷰 선택
 //		6. 뷰로 이동
 		new ViewResolverComposite().resolveView(viewName, req, resp);

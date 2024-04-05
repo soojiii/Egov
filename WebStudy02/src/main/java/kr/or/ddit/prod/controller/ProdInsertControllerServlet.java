@@ -94,7 +94,6 @@ public class ProdInsertControllerServlet extends HttpServlet{
 				req.setAttribute("message", "서버 오류, 잠시 뒤 다시 등록하세요.");
 				viewName = "prod/prodForm";
 				break;
-				
 			default:
 				viewName = "redirect:/prod/prodDetail.do?what="+prod.getProdId();
 				break;
@@ -105,6 +104,8 @@ public class ProdInsertControllerServlet extends HttpServlet{
 		}
 //		 * 5. view 결정
 //		 * 6. view 로 이동 (flow control)
+		
+		
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 		
 //		if(viewName.startsWith("redirect:")) {

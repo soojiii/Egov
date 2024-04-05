@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/preScript.jsp" />
-</head>
-<body>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>Insert title here</title> -->
+<%-- <jsp:include page="/WEB-INF/includee/preScript.jsp" /> --%>
+<!-- </head> -->
+<!-- <body> -->
 <form method="post" enctype="application/x-www-form-urlencoded" >
 <table class="table table-bordered">
 	<tr>
@@ -35,7 +35,7 @@
 			<select name="prodBuyer" data-init-value="${prod.prodBuyer }">
 				<option value>제조사선택</option>
 				<c:forEach items="${buyerList }" var="buyer">
-					<c:if test="${buyer.buyerName  != '없음'}">
+					<c:if test="${buyer.buyerName }">
 					<option value="${buyer.buyerId }" class="${buyer.buyerLgu }">${buyer.buyerName }</option>
 					</c:if>
 				</c:forEach>
@@ -144,6 +144,6 @@
 </table>
 </form>
 <script src="${pageContext.request.contextPath }/resources/js/app/prod/prodForm.js" />
-<jsp:include page="/WEB-INF/includee/postScript.jsp" />
-</body>
-</html>
+<%-- <jsp:include page="/WEB-INF/includee/postScript.jsp" /> --%>
+<!-- </body> -->
+<!-- </html> -->

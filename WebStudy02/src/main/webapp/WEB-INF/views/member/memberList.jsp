@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/WEB-INF/includee/preScript.jsp" />
+
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>Insert title here</title> -->
+<%-- <jsp:include page="/WEB-INF/includee/preScript.jsp" /> --%>
 <style>
 	tr[data-mem-id]{
 		cursor: pointer;
@@ -15,8 +16,8 @@
 		background-color: green;
 	}
 </style>
-</head>
-<body data-context-path="${pageContext.request.contextPath }">
+<!-- </head> -->
+<%-- <body data-context-path="${pageContext.request.contextPath }"> --%>
 <table class="table table-bordered table-stripe">
 	<thead class="table-dark">
 		<tr>
@@ -135,9 +136,10 @@
   </div>
 </div>
 <script src="<c:url value='/resources/js/app/member/memberList.js'/>"></script>
-<jsp:include page="/WEB-INF/includee/postScript.jsp" />
-</body>
-</html>
+
+<%-- <jsp:include page="/WEB-INF/includee/postScript.jsp" /> --%>
+<!-- </body> -->
+<!-- </html> -->
 
 
 

@@ -24,8 +24,7 @@ public class ProdListControllerServlet extends HttpServlet{
 		List<ProdVO> prodList = service.retrieveProdList();
 		
 		req.setAttribute("prodList", prodList);
-		
-		String viewName = "prod/prodList";
+		String viewName = "/prod/prodList";
 		
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 		

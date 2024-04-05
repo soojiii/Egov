@@ -29,27 +29,32 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		if(session.isNew()) {
-			resp.sendError(400);
-			return;
-		}
+//		HttpSession session = req.getSession();
+//		if(session.isNew()) {
+//			resp.sendError(400);
+//			return;
+//		}
 		String viewName = null;
-		MemberVO authMember = (MemberVO) session.getAttribute("authMember");
-		if(authMember==null) {
-			viewName = "redirect:/login/loginForm.jsp";
-		}else {
-			MemberVO member = service.retrieveMember(authMember.getMemId());
+//		MemberVO authMember = (MemberVO) session.getAttribute("authMember");
+		String memId = req.getUserPrincipal().getName();
+		HttpSession session = req.getSession();
+//		if(authMember==null) {
+//			viewName = "redirect:/login/loginForm.jsp";
+//		}else {
+//			MemberVO member = service.retrieveMember(authMember.getMemId());
+			MemberVO member = service.retrieveMember(memId);
 			req.setAttribute("member", member);
-			viewName = "/WEB-INF/views/member/memberForm.jsp";
-		}
+			viewName = "member/memberForm";
+//		}
 		
-		if(viewName.startsWith("redirect:")) {
-			String location = viewName.replace("redirect:", req.getContextPath());
-			resp.sendRedirect(location);
-		}else {
-			req.getRequestDispatcher(viewName).forward(req, resp);			
-		}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
+		
+//		if(viewName.startsWith("redirect:")) {
+//			String location = viewName.replace("redirect:", req.getContextPath());
+//			resp.sendRedirect(location);
+//		}else {
+//			req.getRequestDispatcher(viewName).forward(req, resp);			
+//		}
 		
 		
 //		String memId = req.getParameter("who");
@@ -65,7 +70,7 @@ public class MemberUpdateControllerServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
+//		req.setCharacterEncoding("UTF-8");
 		MemberVO member = new MemberVO();
 		req.setAttribute("member", member);
 		Map<String, String[]> parameterMap = req.getParameterMap();

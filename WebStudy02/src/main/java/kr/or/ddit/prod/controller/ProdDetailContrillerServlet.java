@@ -31,6 +31,7 @@ public class ProdDetailContrillerServlet extends HttpServlet{
 		req.setAttribute("prod", prod);
 		String viewName = "prod/prodDetail";
 		
+		
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 		
 //		if(viewName.startsWith("redirect:")) {
