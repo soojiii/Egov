@@ -16,14 +16,8 @@ public class IndexControllerServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String viewName = "index";
 		
-//		 * 6. view 로 이동 (flow control)
 		new ViewResolverComposite().resolveView(viewName, req, resp);
 		
-//		if(viewName.startsWith("redirect:")) {
-//			String location = viewName.replace("redirect:", req.getContextPath());
-//			resp.sendRedirect(location);
-//		}else {
-//			req.getRequestDispatcher(viewName).forward(req, resp);			
-//		}
+
 	}
 }

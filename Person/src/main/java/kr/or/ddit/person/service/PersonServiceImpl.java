@@ -43,8 +43,8 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public ServiceResult removePerson(PersonVO inputData) throws PkNotFoundException {
-		return dao.deletePerson(inputData) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
+	public ServiceResult removePerson(String id) throws PkNotFoundException {
+		return dao.deletePerson(id) > 0 ? ServiceResult.OK : ServiceResult.FAIL;
 	}
 
 	

@@ -47,6 +47,6 @@ public interface PersonService {
 	 * @return OK, FAIL
 	 * @throws PkNotFoundException(500) 존재하지 않는 경우 예외 발생.
 	 */
-	public ServiceResult removePerson(PersonVO inputData) throws PkNotFoundException;
+	public ServiceResult removePerson(String id) throws PkNotFoundException;
 	
 }
