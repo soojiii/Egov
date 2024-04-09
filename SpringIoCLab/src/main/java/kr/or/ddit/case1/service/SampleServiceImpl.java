@@ -2,15 +2,19 @@ package kr.or.ddit.case1.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.or.ddit.case1.dao.SampleDAO;
 import kr.or.ddit.case1.dao.SampleDAOFactory;
 import kr.or.ddit.case1.dao.SampleDAOImpl_MariaDB;
-import kr.or.ddit.case1.dao.SampleDAOImpl_Oracle;
 import kr.or.ddit.vo.SampleVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Service
 @Slf4j
 @NoArgsConstructor
 public class SampleServiceImpl implements SampleService {
@@ -21,7 +25,8 @@ public class SampleServiceImpl implements SampleService {
 //	3. Strategy pattern : 전략을 주입받아 사용하는 구조. 전략의 주입자(모든 결합력의 집중)와 주입 방법이 필수. ===> DI container
 //	4. DI Container 사용 : 의존객체와 객체들 간의 의존관계 형성을 대신 해주는 대상.
 	
-	
+//	@Autowired
+	@Resource(name = "sampleDAOImpl_MariaDB")
 	private SampleDAO dao;
 	
 	public SampleServiceImpl(SampleDAO dao) {

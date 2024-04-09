@@ -2,11 +2,15 @@ package kr.or.ddit.case4.bts.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import kr.or.ddit.case4.bts.dao.BtsDAO;
 import kr.or.ddit.exception.PkNotFoundException;
 import kr.or.ddit.vo.BtsVO;
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class BtsServiceImpl implements BtsService {
 	private final BtsDAO dao;

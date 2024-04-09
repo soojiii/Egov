@@ -9,21 +9,42 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-import kr.or.ddit.vo.PersonVO;
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Repository;
+
+import kr.or.ddit.vo.PersonVO;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Repository
+@Slf4j
+@RequiredArgsConstructor
 public class PersonDAOImpl implements PersonDAO {
-	private Properties props;
-	public PersonDAOImpl() {
-		super();
-		props = new Properties();
-		
-		try(
-			InputStream is = this.getClass().getResourceAsStream("/kr/or/ddit/MemberData.properties");
-		){
-			props.load(is);
-		}catch (IOException e) {
-			throw new UncheckedIOException(e);
-		}
+//	private final Resource cpRes;
+	@javax.annotation.Resource(name = "props")
+	private final Properties props;
+	
+	@Value("file:F:/00.medias/another_day.txt")
+	private Resource fsRes;
+	public void setFsRes(Resource fsRes) {
+		this.fsRes = fsRes;
+	}
+	
+	@PostConstruct
+	public void init() {
+//		try(
+//			InputStream is = cpRes.getInputStream();
+//		){
+//			props.load(is);
+//			log.info("주입된 리소스 : {}", cpRes);
+			log.info("주입된 리소스 : {}", fsRes);
+//		}catch (IOException e) {
+//			throw new UncheckedIOException(e);
+//		}
 	}
 	
 	private PersonVO rawToObject(String id, String rawData) {

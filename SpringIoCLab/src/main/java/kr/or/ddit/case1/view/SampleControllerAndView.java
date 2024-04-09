@@ -19,7 +19,7 @@ public class SampleControllerAndView {
 //		SampleDAO dao = new SampleDAOImpl_Oracle();
 //		SampleService service = new SampleServiceImpl(dao);
 		
-		ApplicationContext context = new ClassPathXmlApplicationContext("/kr/or/ddit/case1/conf/Sample-Context.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("/kr/or/ddit/case8/conf/AutoDI-Context.xml");
 	
 		
 		SampleService service = context.getBean(SampleService.class);
